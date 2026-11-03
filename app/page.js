@@ -1,69 +1,150 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
+import Hero from "@/components/Hero";
+import ProfileCard from "@/components/ProfileCard";
+import EmployeeCard from "@/components/EmployeeCard";
+import ButtonClick from "@/components/ButtonClick";
+import Counter from "@/components/Counter";
+import StatusToggle from "@/components/StatusToggle";
+import InteractiveEmployeeCard from "@/components/interactiveEmployeeCard";
+import NameInput from "@/components/NameInput";
+import ControlInput from "@/components/Controlnput";
+import UserForm from "@/components/UserForm";
+import CounterEffect from "@/components/CounterEffect";
+import Timer from "@/components/Timer";
+import UserList from "@/components/UserList";
+import UserDirectory from "@/components/UserDirectory";
+
+const person = {
+  name: "Tor",
+  role: "FE Dev",
+  experince: 4,
+  isAvaliable: true,
+};
+
+const person2 = {
+  name: "Benz",
+  experince: 2,
+  isAvaliable: false,
+};
+
+const products = [
+  {
+    id: 1,
+    name: "T-Shirt",
+    price: 590,
+  },
+  {
+    id: 2,
+    name: "Hoodie",
+    price: 1290,
+  },
+  {
+    id: 3,
+    name: "Cap",
+    price: 390,
+  },
+];
+
+const employees = [
+  {
+    id: 1,
+    name: "Tor",
+    role: "Developer",
+    experience: 4,
+    isAvailable: true,
+  },
+  {
+    id: 2,
+    name: "Pure",
+    role: "Developer & Designer",
+    experience: 10,
+    isAvailable: false,
+  },
+  {
+    id: 3,
+    name: "Earn",
+    role: "Designer",
+    experience: 12,
+    isAvailable: false,
+  },
+];
+
+const interactiveemployee = {
+  name: "Tor",
+  role: "FE Dev",
+  experience: 4,
+  isAvailable: false,
+};
 
 export default function Home() {
+  const [showTimer, setshowTimer] = useState(true);
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="container">
+      {/* <Hero name="Tor" position="FE Dev" experience={4} />
+
+      <Hero name="Jane" position="Designer" experience={2} />
+
+      <Hero name="Benz" position="Logistics" experience={2} /> */}
+      {/* <ProfileCard name="Tor" role="FE Dev" experince={4} isAvaliable={true} />
+
+      <ProfileCard name="Jane" experince={2} isAvaliable={false} />
+
+      <ProfileCard
+        name="Benz"
+        role="Logistics"
+        experince={2}
+        isAvaliable={true}
+      /> */}
+      <ProfileCard person={person} />
+      <ProfileCard person={person2} />
+      <hr className="my-5" />
+      <div>
+        <p> {products[0].name}</p>
+        <p> {products[1].price}</p>
+        <p> {products[2].id}</p>
+      </div>
+      <hr className="my-5" />
+      <div>
+        {products.map((product) => (
+          <p key={product.id} id={product.id}>
+            {product.name}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        ))}
+      </div>
+      <hr className="my-5" />
+      <div>
+        {employees.map((employee) => (
+          <EmployeeCard key={employee.id} employee={employee} />
+        ))}
+      </div>
+      <hr className="my-5" />
+      <ButtonClick />
+      <hr className="my-5" />
+      <Counter />
+      <hr className="my-5" />
+      <StatusToggle />
+      <hr className="my-5" />
+      <InteractiveEmployeeCard props={interactiveemployee} />
+      <hr className="my-5" />
+      <NameInput />
+      <hr className="my-5" />
+      <ControlInput />
+      <hr className="my-5" />
+      <UserForm />
+      <hr className="my-5" />
+      <CounterEffect />
+      <hr className="my-5" />
+      {/* <Timer /> */}
+      <hr className="my-5" />
+      {showTimer && <Timer />}
+      <button onClick={() => setshowTimer((prev) => !prev)}>
+        Toggle Timer
+      </button>
+      <hr className="my-5" />
+      <UserList />
+      <hr className="my-5" />
+      <UserDirectory />
     </div>
   );
 }
